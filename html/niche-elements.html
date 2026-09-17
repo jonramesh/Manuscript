@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niche HTML Elements — a working reference</title>
+    <link rel="stylesheet" href="../css/niche-elements.css">
+  </head>
+  <body>
+
+    <header class="page-head">
+      <hgroup>
+        <h1>Niche HTML Elements</h1>
+        <p>Everything below is real, standard HTML — rendered live, no JavaScript.</p>
+      </hgroup>
+    </header>
+
+    <main>
+
+      <!-- ============================================================ -->
+      <h2 class="group">Typography &amp; annotation</h2>
+
+      <section class="el">
+        <h3>&lt;ruby&gt; &lt;rt&gt; &lt;rp&gt;</h3>
+        <p class="what">Annotations that ride <em>above</em> the line. Built for Japanese phonetic guides, but nothing stops you glossing vocabulary with it.</p>
+        <div class="demo">
+          <p class="demo-text">
+            The essay turns on
+            <ruby>network power<rp>(</rp><rt>Grewal, 2008</rt><rp>)</rp></ruby>
+            and its quieter cousin
+            <ruby>soft power<rp>(</rp><rt>Nye, 1990</rt><rp>)</rp></ruby>.
+          </p>
+        </div>
+        <p class="use">The <code>&lt;rp&gt;</code> tags are fallback parentheses for browsers with no ruby support. <code>ruby-position: under</code> flips the annotation below.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;q&gt;</h3>
+        <p class="what">Inline quotation. The browser inserts the quote marks — and picks the <em>right ones for the language</em>.</p>
+        <div class="demo">
+          <p class="demo-text">
+            English: <q lang="en">join the brandwagon</q><br>
+            French: <q lang="fr">join the brandwagon</q><br>
+            German: <q lang="de">join the brandwagon</q><br>
+            Japanese: <q lang="ja">join the brandwagon</q>
+          </p>
+        </div>
+        <p class="use">You never type a quote character. Override the marks entirely with the CSS <code>quotes</code> property.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;abbr&gt;</h3>
+        <p class="what">An abbreviation, with the expansion in <code>title</code>. Dotted underline by default; hover to read it.</p>
+        <div class="demo">
+          <p class="demo-text">
+            Estonia joined <abbr title="North Atlantic Treaty Organization">NATO</abbr> and the
+            <abbr title="European Union">EU</abbr>, while <abbr title="Non-Governmental Organization">NGO</abbr>s
+            reshaped what sovereignty meant.
+          </p>
+        </div>
+        <p class="use">Your essay is full of these. Note the tooltip is mouse-only — don't hide anything essential in it.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;bdi&gt; and &lt;bdo&gt;</h3>
+        <p class="what"><code>&lt;bdi&gt;</code> isolates text whose direction you don't control, so a right-to-left name can't scramble the sentence around it. <code>&lt;bdo&gt;</code> force-flips direction.</p>
+        <div class="demo">
+          <p class="demo-text">
+            Isolated: author <bdi>محمد</bdi> — 3 citations<br>
+            Reversed: <bdo dir="rtl">This text runs backwards</bdo>
+          </p>
+        </div>
+        <p class="use">Essential the moment user-generated names appear in a list. Almost nobody knows it exists.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;wbr&gt;</h3>
+        <p class="what">An invisible "you may break the line here" hint. No hyphen, no space — it only acts if the line actually needs to wrap.</p>
+        <div class="demo">
+          <p class="demo-text narrow">
+            https://example.com/<wbr>place-branding/<wbr>network-power/<wbr>structural-coercion/<wbr>threshold-of-inevitability
+          </p>
+        </div>
+        <p class="use">The fix for long URLs and compound words blowing out a narrow column.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;ins&gt; and &lt;del&gt;</h3>
+        <p class="what">Editorial insertions and deletions — and both take <code>cite</code> and <code>datetime</code> attributes recording who changed it and when.</p>
+        <div class="demo">
+          <p class="demo-text">
+            Soft power is <del datetime="2008-06-01">entirely</del> <ins datetime="2008-06-01">allegedly</ins> non-coercive.
+          </p>
+        </div>
+        <p class="use">Different from <code>&lt;s&gt;</code>, which means "no longer accurate" rather than "removed from the document."</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;small&gt;, &lt;s&gt;, &lt;u&gt;</h3>
+        <p class="what">All three have real meanings, not just looks. <code>&lt;small&gt;</code> is side-comments and small print. <code>&lt;s&gt;</code> is no-longer-accurate. <code>&lt;u&gt;</code> is a non-textual annotation — its actual spec example is marking a misspelling.</p>
+        <div class="demo">
+          <p class="demo-text">
+            <s>Unipolar</s> Nonpolar world order.<br>
+            <u class="spelling">interpersed</u> with Soviet-era footage<br>
+            <small>Originally published in e-flux journal, 2008.</small>
+          </p>
+        </div>
+        <p class="use">Avoid <code>&lt;u&gt;</code> for anything else — readers will read it as a broken link.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;time&gt; and &lt;data&gt;</h3>
+        <p class="what">Human-readable text with a machine-readable value attached. <code>&lt;time&gt;</code> for dates, <code>&lt;data&gt;</code> for everything else.</p>
+        <div class="demo">
+          <p class="demo-text">
+            Haass wrote in <time datetime="2008">2008</time>; Mouffe in <time datetime="2005">2005</time>.<br>
+            The essay runs <data value="8400">roughly eight thousand words</data>.
+          </p>
+        </div>
+        <p class="use">Invisible to readers, legible to search engines and scripts.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;var&gt;, &lt;kbd&gt;, &lt;samp&gt;, &lt;code&gt;</h3>
+        <p class="what">Four different kinds of technical text that people usually collapse into one <code>&lt;code&gt;</code>.</p>
+        <div class="demo">
+          <p class="demo-text">
+            Press <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> to hard-refresh.<br>
+            Let <var>n</var> be the number of subscribers.<br>
+            The server replied <samp>404 Not Found</samp>.<br>
+            Set <code>position: sticky</code> on the header.
+          </p>
+        </div>
+        <p class="use"><code>&lt;kbd&gt;</code> = keys pressed. <code>&lt;samp&gt;</code> = output from a program. <code>&lt;var&gt;</code> = a variable. <code>&lt;code&gt;</code> = source.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <h2 class="group">Structure</h2>
+
+      <section class="el">
+        <h3>&lt;dl&gt; &lt;dt&gt; &lt;dd&gt;</h3>
+        <p class="what">A description list — term paired with description. This is exactly what your TERMINOLOGY view wants to be.</p>
+        <div class="demo">
+          <dl>
+            <dt>place brand</dt>
+            <dd>A trademark for a place — a nation, region or city.</dd>
+
+            <dt>brandwagon</dt>
+            <dd>Van Ham's coinage for the pressure on unbranded nations to adopt a state brand because everyone else has.</dd>
+          </dl>
+        </div>
+        <p class="use">One <code>&lt;dt&gt;</code> can have several <code>&lt;dd&gt;</code>s, and vice versa — good for synonyms.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;figure&gt; + &lt;figcaption&gt; + &lt;blockquote&gt;</h3>
+        <p class="what">The spec-correct way to do an attributed pull quote. The attribution isn't part of the quote, so it lives outside the blockquote.</p>
+        <div class="demo">
+          <figure class="pull-quote">
+            <blockquote cite="https://www.e-flux.com/journal/">
+              <p>Power is now found in many hands and in many places.</p>
+            </blockquote>
+            <figcaption>Richard Haass, <cite>The Age of Nonpolarity</cite></figcaption>
+          </figure>
+        </div>
+        <p class="use">Two different <code>cite</code>s here: the <em>attribute</em> holds a source URL, the <em>element</em> marks a work's title.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;hgroup&gt;</h3>
+        <p class="what">Binds a heading to its subtitle so the tagline doesn't pollute the document outline as a separate heading.</p>
+        <div class="demo">
+          <hgroup class="demo-hgroup">
+            <h4>Brand States</h4>
+            <p>Postmodern power, democratic pluralism, and design</p>
+          </hgroup>
+        </div>
+        <p class="use">Exactly your article title situation.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;search&gt;</h3>
+        <p class="what">Added to HTML in 2023 — a landmark for search and filter controls. Most developers have never heard of it.</p>
+        <div class="demo">
+          <search>
+            <label for="q">Filter terminology</label>
+            <input id="q" type="search" placeholder="soft power…">
+          </search>
+        </div>
+        <p class="use">Maps to the ARIA <code>search</code> landmark for free. Replaces <code>role="search"</code> on a div.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;address&gt;</h3>
+        <p class="what">Contact details for the author of the nearest article or the document — not for postal addresses in general, which is the usual misuse.</p>
+        <div class="demo">
+          <address>
+            Written by <a href="https://metahaven.net/">Metahaven</a>.<br>
+            Amsterdam.
+          </address>
+        </div>
+        <p class="use">Italic by default. Belongs in a footer, or inside the article it describes.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <h2 class="group">Interactive — with no JavaScript at all</h2>
+
+      <section class="el">
+        <h3>&lt;details&gt; + &lt;summary&gt;</h3>
+        <p class="what">A native disclosure widget. Click to expand. Keyboard accessible, announced correctly, zero script.</p>
+        <div class="demo">
+          <details>
+            <summary>What is structural coercion?</summary>
+            <p>Pressure built into an arrangement rather than exercised directly — a formally free choice made where the alternatives have already been removed.</p>
+          </details>
+          <details name="demo-accordion">
+            <summary>Give several the same <code>name</code>…</summary>
+            <p>…and they behave as an accordion: opening one closes the others. Still no JavaScript.</p>
+          </details>
+          <details name="demo-accordion">
+            <summary>…like this one</summary>
+            <p>Opening this closed the one above it.</p>
+          </details>
+        </div>
+        <p class="use">Style the marker with <code>::marker</code> or <code>summary::-webkit-details-marker</code>. This is the honest answer to most dropdown menus.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;dialog&gt;</h3>
+        <p class="what">A real modal, with focus trapping and Escape-to-close built in. Shown here with the <code>open</code> attribute so it renders inline.</p>
+        <div class="demo">
+          <dialog open class="demo-dialog">
+            <p>A native dialog. <code>showModal()</code> would centre this over a backdrop you can style with <code>::backdrop</code>.</p>
+          </dialog>
+        </div>
+        <p class="use">The only element that needs JS to be genuinely useful — but it hands you focus management for free.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;meter&gt; and &lt;progress&gt;</h3>
+        <p class="what">Not the same thing. <code>&lt;meter&gt;</code> is a scalar inside a known range — it colours itself green/amber/red against <code>low</code>, <code>high</code> and <code>optimum</code>. <code>&lt;progress&gt;</code> is task completion.</p>
+        <div class="demo">
+          <p class="demo-text">Brand recognition: <meter value="0.2" low="0.3" high="0.7" optimum="1">20%</meter> low</p>
+          <p class="demo-text">Brand recognition: <meter value="0.9" low="0.3" high="0.7" optimum="1">90%</meter> high</p>
+          <p class="demo-text">Reading progress: <progress value="70" max="100">70%</progress></p>
+        </div>
+        <p class="use">A <code>&lt;progress&gt;</code> with no <code>value</code> renders as an indeterminate spinner.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;datalist&gt;</h3>
+        <p class="what">Autocomplete suggestions on a plain text input — the user can still type anything. No library required.</p>
+        <div class="demo">
+          <label for="term">Jump to a term</label>
+          <input id="term" list="terms" placeholder="start typing…">
+          <datalist id="terms">
+            <option value="soft power"></option>
+            <option value="network power"></option>
+            <option value="place brand"></option>
+            <option value="junkspace"></option>
+            <option value="threshold of inevitability"></option>
+          </datalist>
+        </div>
+        <p class="use">Click the field and type "p" — suggestions appear. Perfect for your TERMINOLOGY jump box.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;fieldset&gt; + &lt;legend&gt;</h3>
+        <p class="what">Groups related controls with a caption that visually breaks the border. That notch effect is native and surprisingly hard to reproduce by hand.</p>
+        <div class="demo">
+          <fieldset>
+            <legend>Reading mode</legend>
+            <label><input type="radio" name="mode" checked> Original</label>
+            <label><input type="radio" name="mode"> Terminology</label>
+            <label><input type="radio" name="mode"> Figures</label>
+          </fieldset>
+        </div>
+        <p class="use">Screen readers announce the legend before each control inside it.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <h2 class="group">Tables &amp; media</h2>
+
+      <section class="el">
+        <h3>&lt;colgroup&gt; + &lt;col&gt;</h3>
+        <p class="what">Style an entire table column with one element — no classes on individual cells. The only place in HTML you can address a column.</p>
+        <div class="demo">
+          <table>
+            <caption>Terms by section</caption>
+            <colgroup>
+              <col>
+              <col class="highlight-col">
+              <col>
+            </colgroup>
+            <thead>
+              <tr><th>Section</th><th>Key term</th><th>Coined by</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Soft Power</td><td>soft power</td><td>Nye</td></tr>
+              <tr><td>Network Power</td><td>network power</td><td>Grewal</td></tr>
+              <tr><td>Pluralism</td><td>nonpolar</td><td>Haass</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="use">Only a few properties work on <code>&lt;col&gt;</code> — background, border, width, visibility — but background alone earns it.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;picture&gt; + &lt;source&gt;</h3>
+        <p class="what">Art direction, not just resizing. Serve a genuinely different crop at different widths, or a modern format with a fallback.</p>
+        <div class="demo">
+          <p class="demo-text">Structure only — no image files here:</p>
+          <pre><code>&lt;picture&gt;
+  &lt;source srcset="wide.avif" type="image/avif"&gt;
+  &lt;source srcset="wide.webp" media="(min-width: 800px)"&gt;
+  &lt;img src="square.jpg" alt="Tallinn harbour"&gt;
+&lt;/picture&gt;</code></pre>
+        </div>
+        <p class="use">The browser picks the first <code>&lt;source&gt;</code> it understands and stops. The <code>&lt;img&gt;</code> is required — it's the fallback and it carries the <code>alt</code>.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;map&gt; + &lt;area&gt;</h3>
+        <p class="what">Clickable regions on an image, defined by coordinates. Ancient, still standard, occasionally exactly right — diagrams, floor plans, actual maps.</p>
+        <div class="demo">
+          <pre><code>&lt;img src="baltic.png" usemap="#region" alt="Baltic states"&gt;
+&lt;map name="region"&gt;
+  &lt;area shape="circle" coords="120,80,30"
+        href="#estonia" alt="Estonia"&gt;
+&lt;/map&gt;</code></pre>
+        </div>
+        <p class="use">Shapes can be <code>rect</code>, <code>circle</code> or <code>poly</code>. Every area needs an <code>alt</code>.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <h2 class="group">Odds and ends</h2>
+
+      <section class="el">
+        <h3>&lt;template&gt;</h3>
+        <p class="what">Markup the browser parses but refuses to render. It sits inert in the DOM until a script clones it.</p>
+        <div class="demo">
+          <p class="demo-text">There is a full paragraph inside a <code>&lt;template&gt;</code> directly below this line, and you cannot see it.</p>
+          <template>
+            <p>If you can read this, templates are broken.</p>
+          </template>
+        </div>
+        <p class="use">Images inside a template don't load and scripts don't run — that's the point.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;noscript&gt;</h3>
+        <p class="what">Content shown only when scripting is unavailable. You'll see nothing here unless you disable JavaScript.</p>
+        <div class="demo">
+          <noscript>
+            <p class="demo-text">JavaScript is off — so you're reading this.</p>
+          </noscript>
+          <p class="demo-text">JavaScript is on, so the <code>&lt;noscript&gt;</code> block above is hidden.</p>
+        </div>
+        <p class="use">Rarely needed now, but still the only declarative way to detect it.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;hr&gt;</h3>
+        <p class="what">Not a line — a <em>thematic break</em>. A scene change in the content. The horizontal rule is just its default styling, and you can restyle it into anything.</p>
+        <div class="demo">
+          <hr>
+          <hr class="fancy">
+        </div>
+        <p class="use">Use it where the subject shifts, not where you want a divider. For a divider, use a border.</p>
+      </section>
+
+      <section class="el">
+        <h3>&lt;output&gt;</h3>
+        <p class="what">A container for the result of a calculation. Announced as a live region, so screen readers read updates aloud automatically.</p>
+        <div class="demo">
+          <p class="demo-text">Terms marked: <output>19</output> of <output>24</output> identified</p>
+        </div>
+        <p class="use">The live-region behaviour is free — no <code>aria-live</code> needed.</p>
+      </section>
+
+      <section class="el deprecated">
+        <h3>&lt;marquee&gt; <span class="tag">deprecated</span></h3>
+        <p class="what">Scrolling text. Formally obsolete, still implemented by every browser, and genuinely on-brand for an essay about 1990s nation branding.</p>
+        <div class="demo">
+          <marquee>Welcome to Estonia — Welcome to Estonia — Welcome to Estonia —</marquee>
+        </div>
+        <p class="use">Don't ship it. The modern equivalent is a CSS <code>@keyframes</code> translation, which you can pause on hover and disable under <code>prefers-reduced-motion</code>.</p>
+      </section>
+
+    </main>
+
+    <footer class="page-foot">
+      <p><small>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements">MDN HTML elements reference</a>.</small></p>
+    </footer>
+
+  </body>
+</html>
